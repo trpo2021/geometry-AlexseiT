@@ -2,51 +2,48 @@
 #include <string>
 using namespace std;
 const double pi = 3.141592653589793238463;
-int ind(string s) {
-	string s1 ;
-	s1 = "circle";
-	if (_stricmp(s.c_str(), s1.c_str()) == 0) return 1;
-	s1 = "triangle";
-	if (_stricmp(s.c_str(), s1.c_str()) == 0) return 2;
-	s1 = "polygon";
-	if (_stricmp(s.c_str(), s1.c_str()) == 0) return 3;
+int ind(string Object) {
+	string ObjectName;
+	ObjectName = "circle";
+	if (_stricmp(Object.c_str(), ObjectName.c_str()) == 0) return 1;
+	ObjectName = "triangle";
+	if (_stricmp(Object.c_str(), ObjectName.c_str()) == 0) return 2;
+	ObjectName = "polygon";
+	if (_stricmp(Object.c_str(), ObjectName.c_str()) == 0) return 3;
 	return 0;
 }
 int main()
 {
-	string s, s1, s2, figure;
-	float x, y, r;
-	float P, P1;
-	getline(cin, s);
-	s1 = s;
-	if (s1.substr(s1.find("(") - 1, 1) == " ") {
-		s1 = s1.erase(s1.find(" "), s1.find("(") - s1.find(" "));
+	string Object, ObjectName, s2;
+	float Point1, Point2, Number;
+	float perimeter, area;
+	
+	getline(cin, Object);
+	if (Object.substr(Object.find("(") - 1, 1) == " ") {
+		Object = Object.erase(Object.find(" "), Object.find("(") - Object.find(" "));
 	}
-	s2 = s1.substr(0, s1.find("("));
-	switch (ind(s2)) {
-	case (1):                                      /*Окружность*/
-		figure = "circle";
-		cout << s1 << endl;
-		s1 = s1.erase(0, 6);
-		cout << s1 << endl;
-		x = stof(s1.substr(1, s1.find(" ")));
-		s1 = s1.erase(0, s1.find(" "));
-		y = stof(s1.substr(1, s1.find(",") - 1));
-		s1 = s1.erase(0, s1.find(",") + 1);
-		r = stof(s1.substr(1, s1.find(")") - 1));
-		cout << "name = " << figure << endl;
-		cout << "Ox = " << x << endl;
-		cout << "Oy = " << y << endl;
-		cout << "Radius = " << r << endl;
-		P = 2 * pi * r;
-		cout << "Perimetr = " << P << endl;
-		P1 = pi * r * r;
-		cout << "Ploshad = " << P1 << endl;
+	ObjectName = Object.substr(0, Object.find("("));
+
+	switch (ind(ObjectName)) {
+	case (1):                                      
+		Object = Object.erase(0, 6);
+		Point1 = stof(Object.substr(1, Object.find(" ")));
+		Object = Object.erase(0, Object.find(" "));
+		Point2 = stof(Object.substr(1, Object.find(",") - 1));
+		Object = Object.erase(0, Object.find(",") + 1);
+		Number = stof(Object.substr(1, Object.find(")") - 1));
+		cout << "Point1 = " << Point1 << endl;
+		cout << "Point2 = " << Point2 << endl;
+		cout << "Number = " << Number << endl;
+		perimeter = 2 * pi * Number;
+		cout << "perimeter = " << perimeter << endl;
+		area = pi * Number * Number;
+		cout << "area = " << area << endl;
 		break;
-	case (2):                                     /*Треугольник*/
+	case (2):                                    
 		cout << "triangle" << endl; 
 		break;
-	case (3):                                     /*Полигон*/
+	case (3):                                    
 		cout << "polygon" << endl; 
 		break;
 		}
