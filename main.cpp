@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 using namespace std;
 const double pi = 3.141592653589793238463;
 int ind(string Object) {
@@ -8,23 +6,20 @@ int ind(string Object) {
 	if (_stricmp(Object.c_str(), ObjectName.c_str()) == 0) return 1;
 	ObjectName = "triangle";
 	if (_stricmp(Object.c_str(), ObjectName.c_str()) == 0) return 2;
-	ObjectName = "polygon";
+ 	ObjectName = "polygon";
 	if (_stricmp(Object.c_str(), ObjectName.c_str()) == 0) return 3;
 	return 0;
 }
 int main()
 {
-	string Object, ObjectName, s2;
-	float Point1, Point2, Number;
-	float perimeter, area;
-	
-	getline(cin, Object);
-	if (Object.substr(Object.find("(") - 1, 1) == " ") {
-		Object = Object.erase(Object.find(" "), Object.find("(") - Object.find(" "));
-	}
-	ObjectName = Object.substr(0, Object.find("("));
-
-	switch (ind(ObjectName)) {
+string Object, ObjectName, s2;
+float Point1, Point2, Number;
+float perimeter, area;
+getline(cin, Object);
+if (Object.substr(Object.find("(") - 1, 1) == " ")
+	Object = Object.erase(Object.find(" "), Object.find("(") - Object.find(" "));
+ObjectName = Object.substr(0, Object.find("("));
+switch (ind(ObjectName)) {
 	case (1):                                      
 		Object = Object.erase(0, 6);
 		Point1 = stof(Object.substr(1, Object.find(" ")));
