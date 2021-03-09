@@ -1,47 +1,85 @@
+#include <iostream>
+#include <string>
 using namespace std;
 const double pi = 3.141592653589793238463;
-int ind(string Object)
+enum Figures {
+	Circle, Trinagle, Polygon, Error
+};
+
+struct circle {
+	float Point;
+	float Point1;
+	float Number;
+};
+
+string word_tolower(string word)
 {
-	string ObjectName;
-	ObjectName = "circle";
-	if (_stricmp(Object.c_str(), ObjectName.c_str()) == 0) return 1;
-	ObjectName = "triangle";
-	if (_stricmp(Object.c_str(), ObjectName.c_str()) == 0) return 2;
- 	ObjectName = "polygon";
-	if (_stricmp(Object.c_str(), ObjectName.c_str()) == 0) return 3;
-	return 0;
+	int n = word.length();
+	for (int i = 0; i < n; i++) {
+		word[i] = tolower(word[i]);
+	}
+	return word;
 }
-int main()
-{
-	string Object, ObjectName, s2;
-	float Point1, Point2, Number;
-	float perimeter, area;
-	getline(cin, Object);
-	if (Object.substr(Object.find("(") - 1, 1) == " ")
-		Object = Object.erase(Object.find(" "), Object.find("(") - Object.find(" "));
-	ObjectName = Object.substr(0, Object.find("("));
-	switch (ind(ObjectName)) 
-	{
-		case (1):                                      
-			Object = Object.erase(0, 6);
-			Point1 = stof(Object.substr(1, Object.find(" ")));
-			Object = Object.erase(0, Object.find(" "));
-			Point2 = stof(Object.substr(1, Object.find(",") - 1));
-			Object = Object.erase(0, Object.find(",") + 1);
-			Number = stof(Object.substr(1, Object.find(")") - 1));
-			cout << "Point1 = " << Point1 << endl;
-			cout << "Point2 = " << Point2 << endl;
-			cout << "Number = " << Number << endl;
-			perimeter = 2 * pi * Number;
-			cout << "perimeter = " << perimeter << endl;
-			area = pi * Number * Number;
-			cout << "area = " << area << endl;
+
+void Сircle_func(float Number) {
+	float perimetr = 2 * pi * Number;
+	float area = pi * Number * Number;
+	cout << "Perimetr: " << perimetr << endl;
+	cout << "area: " << area << endl;
+}
+
+Figures identify(string figure) {
+	string figureName;
+	figure = word_tolower(figure);
+
+	figureName = "circle";
+	if (figure == figureName) return Circle;
+
+	figureName = "triangle";
+	if (figure == figureName) return Trinagle;
+
+	figureName = "polygon";
+	if (figure == figureName) return Polygon;
+
+	return Error;
+}
+
+int main() {
+	string ObjectName;
+	string ObjectString;
+	circle Object;
+
+	getline(cin, ObjectString);
+
+	if (ObjectString.substr(0, 1) == " ") {
+		ObjectString.erase(0, ObjectString.find_first_not_of(" "));
+	}
+	if (ObjectString.substr(ObjectString.find("(") - 1, 1) == " ") {
+		ObjectString = ObjectString.erase(ObjectString.find(" "), ObjectString.find("(") - ObjectString.find(" "));
+	}
+	ObjectName = ObjectString.substr(0, ObjectString.find("("));
+
+
+	switch (identify(ObjectName)) {
+			case Circle:
+			ObjectString = ObjectString.erase(0, 6);
+			Object.Point = stof(ObjectString.substr(1, ObjectString.find(" ")));
+			ObjectString = ObjectString.erase(0, ObjectString.find(" "));
+			Object.Point1 = stof(ObjectString.substr(1, ObjectString.find(",") - 1));
+			ObjectString = ObjectString.erase(0, ObjectString.find(",") + 1);
+			Object.Number = stof(ObjectString.substr(1, ObjectString.find(")") - 1));
+			cout << "Point = " << Object.Point << endl;
+			cout << "Point1 = " << Object.Point1 << endl;
+			cout << "Number = " << Object.Number << endl;
+			Сircle_func(Object.Number);
 			break;
-		case (2):                                    
-			cout << "triangle" << endl; 
+		case Trinagle:
+			cout << "triangle" << endl;
 			break;
-		case (3):                                    
-			cout << "polygon" << endl; 
+		case Polygon:
+			cout << "polygon" << endl;
 			break;
+		case Error:
+			cout << "Error: the figure was not found";
 	}
 }
