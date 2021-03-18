@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include "parsing.h"
+#include "func.h"
 using namespace std;
 
 enum Figures {
@@ -30,21 +32,6 @@ string word_tolower(string word)
     return word;
 }
 
-void Circle_math(circle Object_circle)
-{
-    float perimetr = 2 * 3.14 * Object_circle.Number;
-    float area = 3.14 * Object_circle.Number * Object_circle.Number;
-
-    cout << "perimetr = " << perimetr << endl;
-    cout << "area = " << area << endl;
-}
-
-void Triangle_math(triangle Object_triangle)
-{
-    float area = 0.5 * abs((Object_triangle.Point2[0] - Object_triangle.Point1[0]) * (Object_triangle.Point3[1] - Object_triangle.Point1[1]) - (Object_triangle.Point3[0] - Object_triangle.Point1[0]) * (Object_triangle.Point2[1] - Object_triangle.Point1[1]));
-    cout << "area = " << area << endl;
-}
-
 Figures identify(string figure) {
     string figureName;
     figure = word_tolower(figure);
@@ -70,32 +57,6 @@ void parse_circle(string input, circle* Object_circle)
         input = input.erase(0, end + 1);
         Object_circle->Number = stod(input, &end);
     };
-}
-
-void parse_triangle(string input, triangle* Object_triangle)
-{
-    size_t end;
-    input = input.erase(0, 8);
-    if ((input[0] == '(') && (input[1] == '(')) {
-        input = input.erase(0, 2);
-        replace(input.begin(), input.end(), ',', ' ');
-        Object_triangle->Point1[0] = stod(input, &end);
-        input.erase(0, end);
-        Object_triangle->Point1[1] = stod(input, &end);
-        input.erase(0, end);
-        Object_triangle->Point2[0] = stod(input, &end);
-        input.erase(0, end);
-        Object_triangle->Point2[1] = stod(input, &end);
-        input.erase(0, end);
-        Object_triangle->Point3[0] = stod(input, &end);
-        input.erase(0, end);
-        Object_triangle->Point3[1] = stod(input, &end);
-        input.erase(0, end);
-        Object_triangle->Point4[0] = stod(input, &end);
-        input.erase(0, end);
-        Object_triangle->Point4[1] = stod(input, &end);
-        input.erase(0, end);
-    }
 }
 
 string parse_name(string input)
