@@ -44,34 +44,6 @@ Figures identify(string figure) {
 
     return Error;
 }
-
-void parse_circle(string input, circle* Object_circle)
-{
-    size_t end;
-    input = input.erase(0, 6);
-    if (input[0] == '(') {
-        input.erase(0, 1);
-        Object_circle->Point[0] = stod(input, &end);
-        input = input.erase(0, end);
-        Object_circle->Point[1] = stod(input, &end);
-        input = input.erase(0, end + 1);
-        Object_circle->Number = stod(input, &end);
-    };
-}
-
-string parse_name(string input)
-{
-    string figureName;
-    if (input.substr(0, 1) == " ") {
-        input.erase(0, input.find_first_not_of(" "));
-    }
-    if (input.substr(input.find("(") - 1, 1) == " ") {
-        input = input.erase(input.find(" "), input.find("(") - input.find(" "));
-    }
-    figureName = input.substr(0, input.find("("));
-    return figureName;
-}
-
 int main()
 {
     string input, figureName;

@@ -41,3 +41,15 @@ void parse_triangle(string input, triangle* Object_triangle)
         input.erase(0, end);
     }
 }
+string parse_name(string input)
+{
+    string figureName;
+    if (input.substr(0, 1) == " ") {
+        input.erase(0, input.find_first_not_of(" "));
+    }
+    if (input.substr(input.find("(") - 1, 1) == " ") {
+        input = input.erase(input.find(" "), input.find("(") - input.find(" "));
+    }
+    figureName = input.substr(0, input.find("("));
+    return figureName;
+}
