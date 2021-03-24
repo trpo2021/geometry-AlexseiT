@@ -1,4 +1,5 @@
 #include "parsing.h"
+#include "func.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
