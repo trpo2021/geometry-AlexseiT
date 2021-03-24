@@ -5,24 +5,6 @@
 #include "func.h"
 using namespace std;
 
-enum Figures {
-    Circle, Triangle, Error
-};
-
-struct circle
-{
-    float Point[2];
-    float Number;
-};
-
-struct triangle
-{
-    float Point1[2];
-    float Point2[2];
-    float Point3[2];
-    float Point4[2];
-};
-
 string word_tolower(string word)
 {
     int n = word.length();
