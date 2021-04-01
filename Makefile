@@ -1,11 +1,10 @@
-
 APP_NAME = geometry
 LIB_NAME = libgeometry
+CC = g++
 
-CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -I src -MP -MMD
+CPPFLAGS = -Wall -Wextra -Werror -I src -MP -MMD
 LDFLAGS =
-LDLIBS =
+LDLIBS = -lm
 
 BIN_DIR = bin
 OBJ_DIR = obj
@@ -24,17 +23,25 @@ LIB_OBJECTS = $(LIB_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
 
 DEPS = $(APP_OBJECTS:.o=.d) $(LIB_OBJECTS:.o=.d)
 
-CFLAGS = -Wall -Wextra -Werror
+.PHONY: all
+all: $(APP_PATH)
 
-program: main.o parsing.o func.o
-	$(CXX) $(CFLAGS) -o $@ $^
+-include $(DEPS)
 
-main.o: main.cpp
-	$(CXX) -cpp $(CFLAGS) -o $@ $<
+$(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
+	$(CC) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
 
-parsing.o: parsing.cpp
-	$(CXX) -cpp $(CFLAGS) -o $@ $<
+$(LIB_PATH): $(LIB_OBJECTS)
+	ar rcs $@ $^
 
-func.o: func.cpp
-	$(CXX) -cpp $(CFLAGS) -o $@ $<
+$(OBJ_DIR)/$(SRC_DIR)/$(APP_NAME)/%.o: $(SRC_DIR)/$(APP_NAME)/%.c
+	$(CC) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
 
+$(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/%.o: $(SRC_DIR)/$(LIB_NAME)/%.c
+	$(CC) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
+
+.PHONY: clean
+clean:
+	$(RM) $(APP_PATH) $(LIB_PATH)
+	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
+	find $(OBJ_DIR) -name '*.d' -exec $(RM) '{}' \;
