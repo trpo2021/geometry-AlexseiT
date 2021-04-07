@@ -36,7 +36,7 @@ void print_circle(mass_object* circl, float* perimeter, float* area)
 {
 	cout << circl->order_number << "."
 
-	<< "circle(" << circl->obj_circle.point[0] << ' ' << circl->obj_circle.point[1] << ", "
+ 	<< "circle(" << circl->obj_circle.point[0] << ' ' << circl->obj_circle.point[1] << ", "
 
 	<< circl->obj_circle.number << ")" << endl;
 
