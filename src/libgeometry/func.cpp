@@ -20,12 +20,12 @@ double distance_between_points(double x1, double x2, double y1, double y2)
 
 void find_triangle_param(mass_object triang, float* perimeter, float* area)
 {
-    double x1 = triang.triag.point_1[0];
-    double x2 = triang.triag.point_2[0];
-    double x3 = triang.triag.point_3[0];
-    double y1 = triang.triag.point_1[1];
-    double y2 = triang.triag.point_2[1];
-    double y3 = triang.triag.point_3[1];
+    double x1 = triang.obj_triagle.point_1[0];
+    double x2 = triang.obj_triagle.point_2[0];
+    double x3 = triang.obj_triagle.point_3[0];
+    double y1 = triang.obj_triagle.point_1[1];
+    double y2 = triang.obj_triagle.point_2[1];
+    double y3 = triang.obj_triagle.point_3[1];
 
     *perimeter = distance_between_points(x1, x2, y1, y2)
         + distance_between_points(x2, x3, y2, y3)
