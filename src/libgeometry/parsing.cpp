@@ -1,55 +1,82 @@
-#include "parsing.h"
-#include <iostream>
-#include <string>
 #include <algorithm>
-void parse_circle(string input, circle* Object_circle)
+#include <iostream>
+#include <libgeometry/parsing.h>
+#include <string>
+
+std::string word_tolower(std::string word)
+{
+    int n = word.length();
+    for (int i = 0; i < n; i++) {
+        word[i] = tolower(word[i]);
+    }
+    return word;
+}
+
+Figures identify(std::string figure)
+{
+    std::string figureName;
+    figure = word_tolower(figure);
+
+    figureName = "circle";
+    if (figure == figureName)
+        return CIRCLE;
+
+    figureName = "triangle";
+    if (figure == figureName)
+        return TRIANGLE;
+
+    return ERROR;
+}
+
+void parsing_circle(std::string input, mass_object* circl)
 {
     size_t end;
     input = input.erase(0, 6);
     if (input[0] == '(') {
         input.erase(0, 1);
-        Object_circle->Point[0] = stod(input, &end);
+        circl->obj_circle.point[0] = stod(input, &end);
         input = input.erase(0, end);
-        Object_circle->Point[1] = stod(input, &end);
+        circl->obj_circle.point[1] = stod(input, &end);
         input = input.erase(0, end + 1);
-        Object_circle->Number = stod(input, &end);
+        circl->obj_circle.number = stod(input, &end);
     };
 }
 
-void parse_triangle(string input, triangle* Object_triangle)
+void parsing_triangle(std::string input, mass_object* triang)
 {
     size_t end;
     input = input.erase(0, 8);
     if ((input[0] == '(') && (input[1] == '(')) {
         input = input.erase(0, 2);
         replace(input.begin(), input.end(), ',', ' ');
-        Object_triangle->Point1[0] = stod(input, &end);
+        triang->obj_triagle.point_1[0] = stod(input, &end);
         input.erase(0, end);
-        Object_triangle->Point1[1] = stod(input, &end);
+        triang->obj_triagle.point_1[1] = stod(input, &end);
         input.erase(0, end);
-        Object_triangle->Point2[0] = stod(input, &end);
+        triang->obj_triagle.point_2[0] = stod(input, &end);
         input.erase(0, end);
-        Object_triangle->Point2[1] = stod(input, &end);
+        triang->obj_triagle.point_2[1] = stod(input, &end);
         input.erase(0, end);
-        Object_triangle->Point3[0] = stod(input, &end);
+        triang->obj_triagle.point_3[0] = stod(input, &end);
         input.erase(0, end);
-        Object_triangle->Point3[1] = stod(input, &end);
+        triang->obj_triagle.point_3[1] = stod(input, &end);
         input.erase(0, end);
-        Object_triangle->Point4[0] = stod(input, &end);
+        triang->obj_triagle.point_4[0] = stod(input, &end);
         input.erase(0, end);
-        Object_triangle->Point4[1] = stod(input, &end);
+        triang->obj_triagle.point_4[1] = stod(input, &end);
         input.erase(0, end);
     }
 }
-string parse_name(string input)
+
+std::string parsing_name(std::string* input)
 {
-    string figureName;
-    if (input.substr(0, 1) == " ") {
-        input.erase(0, input.find_first_not_of(" "));
+    std::string figureName;
+    if (input->substr(0, 1) == " ") {
+        input->erase(0, input->find_first_not_of(" "));
     }
-    if (input.substr(input.find("(") - 1, 1) == " ") {
-        input = input.erase(input.find(" "), input.find("(") - input.find(" "));
+    if (input->substr(input->find("(") - 1, 1) == " ") {
+        input->erase(input->find(" "), input->find("(") - input->find(" "));
     }
-    figureName = input.substr(0, input.find("("));
+    figureName = input->substr(0, input->find("("));
     return figureName;
 }

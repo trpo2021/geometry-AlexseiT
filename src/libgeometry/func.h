@@ -1,21 +1,34 @@
 #pragma once
-#include "parsing.h"
-void Circle_math(circle Object_circle);
-void Triangle_math(triangle Object_triangle);
-enum Figures {
-    Circle, Triangle, Error
+
+enum Figures { CIRCLE, TRIANGLE, ERROR };
+
+struct circle {
+    float point[2];
+    float number;
 };
 
-struct circle
-{
-    float Point[2];
-    float Number;
+struct triangle {
+    float point_1[2];
+    float point_2[2];
+    float point_3[2];
+    float point_4[2];
 };
 
-struct triangle
-{
-    float Point1[2];
-    float Point2[2];
-    float Point3[2];
-    float Point4[2];
+struct mass_object {
+    Figures tag;
+    int order_number;
+    union {
+        struct circle obj_circle;
+        struct triangle obj_triangle;
+    };
 };
+
+double distance_between_points(double x1, double x2, double y1, double y2);
+
+void find_circle_param(mass_object circl, float* perimeter, float* area);
+
+void find_triangle_param(mass_object triang, float* perimeter, float* area);
+
+void print_circle(mass_object* circl, float* perimeter, float* area);
+
+void print_triangle(mass_object* triang, float* perimeter, float* area);
