@@ -1,59 +1,48 @@
-#include <iostream>
-#include <string>
 #include <algorithm>
-#include "parsing.h"
-#include "func.h"
+#include <iostream>
+#include <libgeometry/func.h>
+#include <libgeometry/parsing.h>
+#include <string>
 using namespace std;
 
-string word_tolower(string word)
-{
-    int n = word.length();
-    for (int i = 0; i < n; i++) {
-        word[i] = tolower(word[i]);
-    }
-    return word;
-}
-
-Figures identify(string figure) {
-    string figureName;
-    figure = word_tolower(figure);
-
-    figureName = "circle";
-    if (figure == figureName) return Circle;
-
-    figureName = "triangle";
-    if (figure == figureName) return Triangle;
-
-    return Error;
-}
 int main()
 {
     string input, figureName;
-    getline(cin, input);
-    figureName = parse_name(input);
 
-    switch (identify(figureName)) {
-    case Circle:
-        circle Object_circle;
-        parse_circle(input, &Object_circle);
-        cout << "circle" << endl;
-        cout << "Point =  " << Object_circle.Point[0] << ' ' << Object_circle.Point[1] << endl;
-        cout << "radius = " << Object_circle.Number << endl;
-        Circle_math(Object_circle);
-        break;
-    case Triangle:
-        triangle Object_triangle;
-        parse_triangle(input, &Object_triangle);
-        cout << "triangle" << endl;
-        cout << "Point 1: " << Object_triangle.Point1[0] << ' ' << Object_triangle.Point1[1] << endl;
-        cout << "Point 2: " << Object_triangle.Point2[0] << ' ' << Object_triangle.Point2[1] << endl;
-        cout << "Point 3: " << Object_triangle.Point3[0] << ' ' << Object_triangle.Point3[1] << endl;
-        cout << "Point 4: " << Object_triangle.Point4[0] << ' ' << Object_triangle.Point4[1] << endl;
-        Triangle_math(Object_triangle);
-        break;
-    case Error:
-        cout << input << endl;
-        cout << '^' << endl;
-        cout << "Error in name";
+    int figures_count;
+    cout << "Enter number:" << endl;
+    cin >> figures_count;
+    cin.sync();
+    mass_object figures[figures_count];
+
+    for (int i = 0; i < figures_count; i++) {
+        getline(cin, input);
+        figureName = parsing_name(&input);
+
+        switch (identify(figureName)) {
+        case CIRCLE:
+            figures[i].tag = CIRCLE;
+            figures[i].order_number = i + 1;
+            parsing_circle(input, &figures[i]);
+            break;
+        case TRIANGLE:
+            figures[i].tag = TRIANGLE;
+            figures[i].order_number = i + 1;
+            parsing_triangle(input, &figures[i]);
+            break;
+        case ERROR:
+            cout << input << endl;
+            cout << '^' << endl;
+            cout << "Error: figure not found";
+        }
+    }
+
+    float perimeter, area;
+    cout << endl;
+    for (int i = 0; i < figures_count; i++) {
+        if (figures[i].tag == CIRCLE)
+            print_circle(&figures[i], &perimeter, &area);
+        if (figures[i].tag == TRIANGLE)
+            print_triangle(&figures[i], &perimeter, &area);
     }
 }
