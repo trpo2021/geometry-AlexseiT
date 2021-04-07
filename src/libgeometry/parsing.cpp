@@ -49,21 +49,21 @@ void parsing_triangle(std::string input, mass_object* triang)
     if ((input[0] == '(') && (input[1] == '(')) {
         input = input.erase(0, 2);
         replace(input.begin(), input.end(), ',', ' ');
-        triang->obj_triagle.point_1[0] = stod(input, &end);
+        triang->obj_triangle.point_1[0] = stod(input, &end);
         input.erase(0, end);
-        triang->obj_triagle.point_1[1] = stod(input, &end);
+        triang->obj_triangle.point_1[1] = stod(input, &end);
         input.erase(0, end);
-        triang->obj_triagle.point_2[0] = stod(input, &end);
+        triang->obj_triangle.point_2[0] = stod(input, &end);
         input.erase(0, end);
-        triang->obj_triagle.point_2[1] = stod(input, &end);
+        triang->obj_triangle.point_2[1] = stod(input, &end);
         input.erase(0, end);
-        triang->obj_triagle.point_3[0] = stod(input, &end);
+        triang->obj_triangle.point_3[0] = stod(input, &end);
         input.erase(0, end);
-        triang->obj_triagle.point_3[1] = stod(input, &end);
+        triang->obj_triangle.point_3[1] = stod(input, &end);
         input.erase(0, end);
-        triang->obj_triagle.point_4[0] = stod(input, &end);
+        triang->obj_triangle.point_4[0] = stod(input, &end);
         input.erase(0, end);
-        triang->obj_triagle.point_4[1] = stod(input, &end);
+        triang->obj_triangle.point_4[1] = stod(input, &end);
         input.erase(0, end);
     }
 }
