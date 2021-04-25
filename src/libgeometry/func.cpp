@@ -3,6 +3,36 @@
 #include <libgeometry/func.h>
 #include <string>
 using namespace std;
+double circle_p(double number)
+{
+    double perim;
+    perim = 2 * 3.14 * number;
+    return perim;
+}
+
+double circle_area(double number)
+{
+    double area;
+    area = 3.14 * number * number;
+    return area;
+}
+
+double triangle_area(double x1, double x2, double x3, double y1, double y2, double y3)
+{
+    double area;
+    area = abs(((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)) / 2);
+    return area;
+}
+
+double triangle_p(
+        double x1, double x2, double x3, double y1, double y2, double y3)
+{
+    double perim;
+    perim = distance_between_points(x1, x2, y1, y2)
+            + distance_between_points(x2, x3, y2, y3)
+            + distance_between_points(x3, x1, y3, y1);
+    return perim;
+}
 
 void find_circle_param(mass_object circl, float* perimeter, float* area)
 {

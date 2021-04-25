@@ -22,6 +22,13 @@ struct mass_object {
         struct triangle obj_triangle;
     };
 };
+double circle_area(double number);
+
+double circle_p(double number);
+
+double triangle_area(double x1, double x2, double x3, double y1, double y2, double y3);
+
+double triangle_p(double x1, double x2, double x3, double y1, double y2, double y3);
 
 double distance_between_points(double x1, double x2, double y1, double y2);
 

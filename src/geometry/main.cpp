@@ -3,6 +3,8 @@
 #include <libgeometry/func.h>
 #include <libgeometry/parsing.h>
 #include <string>
+#include <limits>
+
 using namespace std;
 
 int main()
@@ -12,7 +14,8 @@ int main()
     int figures_count;
     cout << "Enter number:" << endl;
     cin >> figures_count;
-    cin.sync();
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     mass_object figures[figures_count];
 
     for (int i = 0; i < figures_count; i++) {
