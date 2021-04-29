@@ -12,3 +12,4 @@ void parsing_circle(std::string input, mass_object* circl);
 void parsing_triangle(std::string input, mass_object* triang);
 
 std::string parsing_name(std::string* input);
+
