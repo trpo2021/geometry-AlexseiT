@@ -1,7 +1,7 @@
-#include <libgeometry/parsing.h>
-#include <libgeometry/func.h>
-#include <stdlib.h>
 #include <ctest.h>
+#include <libgeometry/func.h>
+#include <libgeometry/parsing.h>
+#include <stdlib.h>
 CTEST(Perim_Area_Circle, Perim)
 {
     double number = 2;
