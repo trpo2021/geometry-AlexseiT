@@ -110,7 +110,7 @@ void circle_circle(circle* cir, int countC, int count)
       Length = sqrt((cir[count].point[0] - cir[i].point[0]) *
                         (cir[count].point[0] - cir[i].point[0]) +
                     (cir[count].point[1] - cir[i].point[1]) *
-                        (cir[count].point[1] - cir[i].point[2]));
+                        (cir[count].point[1] - cir[i].point[1]));
       if ((Length - 2 * cir[count].number) <= 0) {
         if ((Length - cir[count].number - cir[i].number) <= 0) {
           cout << i+1 << ". circle" << endl;
