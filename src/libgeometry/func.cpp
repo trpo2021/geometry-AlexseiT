@@ -97,4 +97,25 @@ void print_triangle(mass_object* triang, float* perimeter, float* area)
     cout << "Perimeter: " << *perimeter << endl;
 
     cout << "Area: " << *area << endl;
+
+    cout << endl;
+}
+
+void circle_circle(circle* cir, int countC, int count)
+{
+  double Length;
+  cout << "interesection: " << endl;
+  for (int i = 0; i < countC; i++) {
+    if (i != count) {
+      Length = sqrt((cir[count].point[0] - cir[i].point[0]) *
+                        (cir[count].point[0] - cir[i].point[0]) +
+                    (cir[count].point[1] - cir[i].point[1]) *
+                        (cir[count].point[1] - cir[i].point[2]));
+      if ((Length - 2 * cir[count].number) <= 0) {
+        if ((Length - cir[count].number - cir[i].number) <= 0) {
+          cout << i+1 << ". circle" << endl;
+        }
+      }
+    }
+  }
 }
