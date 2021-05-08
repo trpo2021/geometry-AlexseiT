@@ -55,3 +55,105 @@ CTEST(Perim_Area_Triangle, Perim)
 
     ASSERT_DBL_NEAR(perim_c, real_perim);
 }
+
+CTEST(Parsing, Identify_Circle)
+{
+    Figures real_ind = identify("circle");
+
+    Figures rez_circ = CIRCLE;
+
+    ASSERT_EQUAL(rez_circ, real_ind);
+}
+
+CTEST(Parsing, Identify_Triangle)
+{
+    Figures real_ind = identify("triangle");
+
+    Figures rez_triang = TRIANGLE;
+
+    ASSERT_EQUAL(rez_triang, real_ind);
+}
+
+CTEST(Parsing, Parse_space_before_circle)
+{
+    std::string test = " circle(0 0, 1.5)";
+
+    std::string real = parsing_name(&test);
+
+    std::string rez = "circle";
+
+    const char* exp_str = rez.c_str();
+    const char* real_str = real.c_str();
+
+    ASSERT_STR(exp_str, real_str);
+}
+
+CTEST(Parsing, Parse_space_before_triangle)
+{
+    std::string test = " triangle((3 -2.0, 3.0 2, 1.0 0, 3.0 -2))";
+
+    std::string real = parsing_name(&test);
+
+    std::string rez = "triangle";
+
+    const char* exp_str = rez.c_str();
+    const char* real_str = real.c_str();
+
+    ASSERT_STR(exp_str, real_str);
+}
+
+CTEST(Parsing, Parse_space_after_circle)
+{
+    std::string test = "circle (0 0, 1.5)";
+
+    std::string real = parsing_name(&test);
+
+    std::string rez = "circle";
+
+    const char* exp_str = rez.c_str();
+    const char* real_str = real.c_str();
+
+    ASSERT_STR(exp_str, real_str);
+}
+
+CTEST(Parsing, Parse_space_after_triangle)
+{
+    std::string test = "triangle ((3 -2.0, 3.0 2, 1.0 0, 3.0 -2))";
+
+    std::string real = parsing_name(&test);
+
+    std::string rez = "triangle";
+
+    const char* exp_str = rez.c_str();
+    const char* real_str = real.c_str();
+
+    ASSERT_STR(exp_str, real_str);
+}
+
+CTEST(Parsing, Parse_double_space_circle)
+{
+    std::string test = " circle (0 0, 1.5)";
+
+    std::string real = parsing_name(&test);
+
+    std::string rez = "circle";
+
+    const char* exp_str = rez.c_str();
+    const char* real_str = real.c_str();
+
+    ASSERT_STR(exp_str, real_str);
+}
+
+CTEST(Parsing, Parse_double_space_triangle)
+{
+    std::string test = " triangle ((3 -2.0, 3.0 2, 1.0 0, 3.0 -2))";
+
+    std::string real = parsing_name(&test);
+
+    std::string rez = "triangle";
+
+    const char* exp_str = rez.c_str();
+    const char* real_str = real.c_str();
+
+    ASSERT_STR(exp_str, real_str);
+}
