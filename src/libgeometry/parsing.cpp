@@ -35,13 +35,13 @@ void parsing_circle(std::string input, mass_object* circl, circle* cir)
     if (input[0] == '(') {
         input.erase(0, 1);
         circl->obj_circle.point[0] = stod(input, &end);
-	cir->point[0] = stod(input, &end); 
+        cir->point[0] = stod(input, &end);
         input = input.erase(0, end);
         circl->obj_circle.point[1] = stod(input, &end);
-	cir->point[1] = stod(input, &end); 
+        cir->point[1] = stod(input, &end);
         input = input.erase(0, end + 1);
         circl->obj_circle.number = stod(input, &end);
-	cir->number = stod(input, &end);
+        cir->number = stod(input, &end);
     };
 }
 
