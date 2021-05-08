@@ -43,14 +43,19 @@ int main()
         }
     }
 
-    float perimeter, area;
-    cout << endl;
-    for (int i = 0; i < figures_count; i++) {
-        if (figures[i].tag == CIRCLE){
-            print_circle(&figures[i], &perimeter, &area);
-	    circle_circle(cir, countC, i);
-	}
-        if (figures[i].tag == TRIANGLE)
-            print_triangle(&figures[i], &perimeter, &area);
+  float perimeter, area;
+  double Numb;
+  cout << endl;
+  for (int i = 0; i < figures_count; i++) {
+    if (figures[i].tag == CIRCLE) {
+      print_circle(&figures[i], &perimeter, &area);
+      Numb = circle_circle(cir, countC, i);
+      if (Numb != 0) {
+        cout << "interesection: " << endl;
+        cout << circle_circle(cir, countC, i) << ". circle" << endl;
+      }
     }
+    if (figures[i].tag == TRIANGLE)
+      print_triangle(&figures[i], &perimeter, &area);
+  }
 }

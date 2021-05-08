@@ -42,4 +42,4 @@ void print_circle(mass_object* circl, float* perimeter, float* area);
 
 void print_triangle(mass_object* triang, float* perimeter, float* area);
 
-void circle_circle(circle* cir, int countC, int count);
+double circle_circle(circle* cir, int countC, int count);
