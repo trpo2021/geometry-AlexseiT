@@ -64,3 +64,7 @@ clean:
 	$(RM) $(APP_PATH) $(LIB_PATH)
 	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
 	find $(OBJ_DIR) -name '*.d' -exec $(RM) '{}' \;
+	find $(OBJ_DIR) -name '*.a' -exec $(RM) '{}' \;
+	find $(OBJ_DIR) -name '*.elf' -exec $(RM) '{}' \;
+	find $(OBJ_DIR) -name '*.out'-exec $(RM) '{}' \;
+	find $(OBJ_DIR) -name '*.stackdump' -exec $(RM) '{}' \;
