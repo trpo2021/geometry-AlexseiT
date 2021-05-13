@@ -48,7 +48,6 @@ int main()
     for (int i = 0; i < figures_count; i++) {
         if (figures[i].tag == CIRCLE) {
             print_circle(&figures[i], &perimeter, &area);
-            cout << "interesection: " << endl;
             circle_circle(cir, countC, i);
             cout << endl;
         }
