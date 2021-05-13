@@ -6,14 +6,14 @@ using namespace std;
 double circle_p(double number)
 {
     double perim;
-    perim = 2 * 3.14 * number;
+    perim = 2 * M_PI * number;
     return perim;
 }
 
 double circle_area(double number)
 {
     double area;
-    area = 3.14 * number * number;
+    area = M_PI * number * number;
     return area;
 }
 
@@ -37,9 +37,9 @@ triangle_p(double x1, double x2, double x3, double y1, double y2, double y3)
 
 void find_circle_param(mass_object circl, float* perimeter, float* area)
 {
-    *perimeter = 2 * 3.14 * circl.obj_circle.number;
+    *perimeter = 2 * M_PI * circl.obj_circle.number;
 
-    *area = 3.14 * circl.obj_circle.number * circl.obj_circle.number;
+    *area = M_PI * circl.obj_circle.number * circl.obj_circle.number;
 }
 
 double distance_between_points(double x1, double x2, double y1, double y2)
