@@ -1,7 +1,7 @@
 APP_NAME = geometry
 APP_NAME_TEST = main_test
 LIB_NAME = libgeometry
-CC = g++
+CXX = g++
 
 CPPFLAGS = -Wall -Wextra -Werror -I src -MP -MMD
 CPPFLAGS_TEST = -Wall -Wextra -Werror -I thirdparty -I src -MP -MMD
@@ -37,16 +37,16 @@ all: $(APP_PATH)
 -include $(DEPS)
 
 $(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
-	$(CC) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
+	$(CXX) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
 
 $(LIB_PATH): $(LIB_OBJECTS)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/$(SRC_DIR)/$(APP_NAME)/%.o: $(SRC_DIR)/$(APP_NAME)/%.$(SRC_EXT)
-	$(CC) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
+	$(CXX) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
 
 $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/%.o: $(SRC_DIR)/$(LIB_NAME)/%.$(SRC_EXT)
-	$(CC) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
+	$(CXX) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
 
 .PHONY: test
 test: $(APP_PATH_TEST)
@@ -54,10 +54,10 @@ test: $(APP_PATH_TEST)
 -include $(DEPS_TEST)
 
 $(APP_PATH_TEST): $(APP_OBJECTS_TEST) $(LIB_PATH)
-	$(CC) $(CPPFLAGS_TEST) $^ -o $@ $(LDFLAGS) $(LDLIBS)
+	$(CXX) $(CPPFLAGS_TEST) $^ -o $@ $(LDFLAGS) $(LDLIBS)
 	
 $(OBJ_DIR)/$(TEST_DIR)/%.o: $(TEST_DIR)/%.$(SRC_EXT)
-	$(CC) -c $(CPPFLAGS_TEST) $< -o $@ $(LDLIBS)
+	$(CXX) -c $(CPPFLAGS_TEST) $< -o $@ $(LDLIBS)
 
 .PHONY: clean
 clean:
