@@ -101,7 +101,6 @@ void print_triangle(mass_object* triang, float* perimeter, float* area)
     cout << endl;
 }
 
-
 void circle_circle(circle *cir, int countC, int count) {
   double Length;
   for (int i = 0; i < countC; i++) {
