@@ -1,0 +1,7 @@
+#Ignore executable and objective files
+*.o
+*.a
+*.d
+*.elf
+*.out
+*.stackdump
