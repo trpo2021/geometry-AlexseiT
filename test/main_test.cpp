@@ -8,18 +8,18 @@ CTEST(Perim_Area_Circle, Perim)
 
     double real_number = circle_p(number);
 
-    double perim_c = 12.56;
+    double perim_c = 12.5664;
 
     ASSERT_DBL_NEAR(perim_c, real_number);
 }
 
 CTEST(Perim_Area_Circle, Area)
 {
-    double area = 1;
+    double number = 1;
 
-    double real_area = circle_area(area);
+    double real_area = circle_area(number);
 
-    double area_c = 3.14;
+    double area_c = 3.14159;
 
     ASSERT_DBL_NEAR(area_c, real_area);
 }
